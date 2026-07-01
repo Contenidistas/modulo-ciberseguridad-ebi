@@ -16,11 +16,30 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
 
 .cyber-grid {
   background-color: #f6fafc;
-  background-image: linear-gradient(rgba(0, 105, 170, .045) 1px, transparent 1px), linear-gradient(90deg, rgba(22, 116, 81, .04) 1px, transparent 1px);
-  background-size: 32px 32px;
+  background-image: url("/fondo-ciberseguridad.png");
+  background-position: top center;
+  background-repeat: repeat-y;
+  background-size: min(1680px, 100vw) auto;
+  background-attachment: fixed;
 }
 
+.casos-carrusel {
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 0;
+  scrollbar-width: thin;
+  scrollbar-color: #77b89e #e7f5ee;
+  overscroll-behavior-inline: contain;
+}
+
+.casos-carrusel::-webkit-scrollbar { height: 8px; }
+.casos-carrusel::-webkit-scrollbar-track { background: #e7f5ee; border-radius: 4px; }
+.casos-carrusel::-webkit-scrollbar-thumb { background: #77b89e; border-radius: 4px; }
+
+.paso-capsula { display: none; }
+.paso-capsula-activo { display: block; }
+
 [data-contraste="true"] { background: #020617; color: #f8fafc; }
+[data-contraste="true"].cyber-grid { background-image: none; }
 [data-contraste="true"] :where(header, main, section, article, nav, div[class*="bg-"]) { background-color: #0f172a !important; border-color: #e2e8f0 !important; }
 [data-contraste="true"] :where(h1,h2,h3,h4,p,li,span,strong,dt,dd,label) { color: #f8fafc !important; }
 [data-texto="grande"] { font-size: 112.5%; }
@@ -32,4 +51,8 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
 @media print {
   .no-print { display: none !important; }
   body, .cyber-grid { background: white !important; }
+  .casos-carrusel { display: grid !important; overflow: visible !important; }
+  .casos-carrusel article { width: 100% !important; max-width: none !important; box-shadow: none !important; }
+  .paso-capsula { display: block !important; break-inside: avoid-page; margin-top: 24px !important; }
+  .paso-capsula + .paso-capsula { break-before: page; }
 }

@@ -2,6 +2,7 @@
 
 import { CheckCircle2, RotateCcw, ShieldCheck, XCircle } from 'lucide-react';
 import { useState } from 'react';
+import TextoConGlosario from '@/componentes/TextoConGlosario';
 import type { Ejercicio } from '@/contenido/ciberseguridad';
 import { mezclar, normalizar } from '@/utilidades/opciones';
 
@@ -30,7 +31,7 @@ function Pregunta({ ejercicio, numero }: { ejercicio: Ejercicio; numero: number 
 
   return (
     <article className="border-b border-slate-200 py-5 last:border-0">
-      <p className="text-sm font-black leading-6 text-slate-900">{numero}. {ejercicio.enunciado}</p>
+      <p className="text-sm font-black leading-6 text-slate-900">{numero}. <TextoConGlosario texto={ejercicio.enunciado} /></p>
       {ejercicio.tipo === 'multiple' && <p className="mt-1 text-xs font-bold text-slate-500">Selecciona todas las opciones que correspondan.</p>}
       {ejercicio.tipo === 'completar' ? (
         <div className="mt-3 flex flex-wrap items-center gap-2 rounded-lg border border-sky-100 bg-sky-50 p-3 font-mono text-sm">
@@ -65,7 +66,7 @@ function Pregunta({ ejercicio, numero }: { ejercicio: Ejercicio; numero: number 
         <div className={`mt-3 rounded-lg border p-3 text-sm leading-6 ${resultado ? 'border-emerald-200 bg-emerald-50 text-emerald-900' : 'border-orange-200 bg-orange-50 text-orange-950'}`} aria-live="polite">
           <div className="flex items-start gap-2">
             {resultado ? <CheckCircle2 className="mt-1 shrink-0" size={17} /> : <XCircle className="mt-1 shrink-0" size={17} />}
-            <p><strong>{resultado ? 'Decisión fundamentada.' : 'Conviene revisar.'}</strong> {ejercicio.feedback}</p>
+            <p><strong>{resultado ? 'Decisión fundamentada.' : 'Conviene revisar.'}</strong> <TextoConGlosario texto={ejercicio.feedback} /></p>
           </div>
           {!resultado && <button type="button" onClick={reiniciar} className="mt-2 inline-flex items-center gap-2 rounded-md bg-white px-3 py-1.5 text-xs font-bold"><RotateCcw size={13} />Intentar nuevamente</button>}
         </div>
@@ -80,6 +81,7 @@ export default function ZonaActiva({ ejercicios }: { ejercicios: Ejercicio[] }) 
       <div className="border-b-4 border-[#167451] pb-3">
         <p className="text-xs font-black uppercase text-[#c65f00]">Evaluación formativa</p>
         <h2 id="zona-activa" className="mt-1 text-xl font-black text-slate-950">Zona activa</h2>
+        <p className="mt-2 text-sm leading-6 text-slate-600">Resuelve {ejercicios.length} desafíos para reconocer conceptos, analizar evidencia, tomar decisiones y transferir el criterio a una situación nueva. Puedes revisar cada respuesta y volver a intentarlo.</p>
       </div>
       <div>{ejercicios.map((ejercicio, indice) => <Pregunta key={ejercicio.id} ejercicio={ejercicio} numero={indice + 1} />)}</div>
     </section>
