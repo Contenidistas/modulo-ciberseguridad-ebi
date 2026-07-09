@@ -242,7 +242,7 @@ const googlePrivacyCheckup: HerramientaSegura = {
 
 const interland: HerramientaSegura = {
   nombre: 'Interland · práctica lúdica',
-  url: 'https://beinternetawesome.withgoogle.com/es-419/interland',
+  url: 'https://beinternetawesome.withgoogle.com/es_es/interland/',
   funcion: 'Propone desafíos interactivos sobre seguridad, amabilidad, privacidad y detección de engaños.',
   situacionDidactica: 'Usarlo como cierre opcional para identificar qué decisiones del juego coinciden con los criterios trabajados en la unidad.',
   reglaDeUso: 'Usarlo como apoyo pedagógico, no como única evidencia de aprendizaje; recuperar luego decisiones y vocabulario en una consigna propia.',
